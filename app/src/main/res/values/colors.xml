@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="color_primary">#FFFFFF</color>
+    <color name="color_primary_variant">#AEAEB1</color>
+    <color name="color_secondary">#2A2931</color>
+    <color name="color_secondary_variant">#1D1D23</color>
+    <color name="color_surface">#373741</color>
+    <color name="color_background">#33333D</color>
+    <color name="color_error">#b00020</color>
+
+    <color name="rally_green_300">#36F0AB</color>
+    <color name="rally_green_500">#21AF6C</color>
+    <color name="rally_green_700">#0E6C40</color>
+</resources>

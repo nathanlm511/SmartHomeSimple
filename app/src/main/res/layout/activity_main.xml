@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/color_background"
+    tools:context="com.example.smarthomesimple.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/color_background"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <ImageButton
+            android:id="@+id/bluetoothOn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/bluetooth_on"
+            android:contentDescription="bluetooth on"
+            android:tint="@color/color_primary_variant"
+            android:background="@color/color_background"
+            android:layout_weight="1">
+        </ImageButton>
+        <ImageButton
+            android:id="@+id/bluetoothOff"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/bluetooth_off"
+            android:contentDescription="bluetooth off"
+            android:tint="@color/color_primary_variant"
+            android:background="@color/color_background"
+            android:layout_weight="1">
+        </ImageButton>
+        <ImageButton
+            android:id="@+id/devices"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/devices"
+            android:contentDescription="devices"
+            android:tint="@color/color_primary_variant"
+            android:background="@color/color_background"
+            android:layout_weight="1">
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/graph"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/color_background"
+            android:contentDescription="graph"
+            android:onClick="toGraphs"
+            android:src="@drawable/graph"
+            android:tint="@color/color_primary_variant"></ImageButton>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="18dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/color_background"
+        android:orientation="vertical">
+
+        <!--
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/color_surface"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SEE ALL"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="25dp"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"/>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@color/color_surface"
+            android:layout_marginTop="3dp">
+            <TextView
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:text="The status message should go here. I don't know what else to put here"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="~"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="25dp"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"/>
+        </RelativeLayout>
+-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:background="@color/color_surface"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="RX:"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:layout_marginLeft="20dp"/>
+
+            <TextView
+                android:id="@+id/readBuffer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="0.9"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Read Buffer"
+                android:fontFamily="@font/roboto_condensed_light"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal"
+            android:background="@color/color_surface"
+            android:gravity="center"
+            android:layout_marginTop="3dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Status:"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:layout_marginLeft="20dp"/>
+
+            <TextView
+                android:id="@+id/bluetoothStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/checkboxLED1"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="0.9"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Bluetooth Status"
+                android:fontFamily="@font/roboto_condensed_light"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/discover"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/off"
+            android:layout_marginTop="3dp"
+            android:layout_toEndOf="@+id/checkboxLED1"
+            android:layout_toRightOf="@+id/checkboxLED1"
+            android:background="@color/color_surface"
+            android:text="Discover New Devices"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:visibility="gone"
+
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/color_surface"
+            android:layout_marginTop="20dp"
+            >
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="25dp"
+                android:text="Total power"
+                android:fontFamily="@font/roboto_condensed_light"/>
+            <TextView
+                android:layout_marginTop="-5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/total"
+                android:layout_marginLeft="25dp"
+                android:text="988,123 W"
+                android:textSize="30sp"
+                android:fontFamily="@font/eczar"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:orientation="horizontal"
+            >
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/rally_green_700"
+                ></View>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/rally_green_500"
+                ></View>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/rally_green_300"
+                ></View>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="3dp"
+            android:background="@color/color_surface"
+            android:gravity="center"
+            android:id="@+id/led1Container"
+            >
+
+            <CheckBox
+                android:id="@+id/checkboxLED1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="17dp"
+                android:layout_marginLeft="17dp"
+                android:background="@color/color_surface"
+                android:buttonTint="@color/rally_green_700"
+                android:checked="false"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:scaleX="1.7"
+                android:scaleY="1.7"
+                android:textColor="@color/color_primary"/>
+
+            <TextView
+                android:id="@+id/ledText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/checkboxLED1"
+                android:layout_marginLeft="18dp"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:textSize="12sp"
+                android:text="Refrigerator"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/checkboxLED1"
+                android:layout_below="@id/ledText1"
+                android:layout_marginLeft="18dp"
+                android:fontFamily="@font/roboto_condensed_light"
+                android:textSize="10sp"
+                android:textColor="@color/color_primary_variant"
+                android:text="• • • Bathroom"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:text="42,450 W"
+                android:fontFamily="@font/eczar"
+                android:textSize="20sp"
+                android:gravity="center"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="3dp"
+            android:background="@color/color_surface"
+            android:gravity="center"
+            android:id="@+id/led2Container"
+            >
+
+            <CheckBox
+                android:id="@+id/checkboxLED2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="17dp"
+                android:layout_marginLeft="17dp"
+                android:background="@color/color_surface"
+                android:buttonTint="@color/rally_green_500"
+                android:checked="false"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:scaleX="1.7"
+                android:scaleY="1.7"
+                android:textColor="@color/color_primary"/>
+
+            <TextView
+                android:id="@+id/ledText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/checkboxLED2"
+                android:layout_marginLeft="18dp"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:textSize="12sp"
+                android:text="Fire Hydrant"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/checkboxLED2"
+                android:layout_below="@id/ledText2"
+                android:layout_marginLeft="18dp"
+                android:fontFamily="@font/roboto_condensed_light"
+                android:textSize="10sp"
+                android:textColor="@color/color_primary_variant"
+                android:text="• • • Bedroom"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:text="34,769 W"
+                android:fontFamily="@font/eczar"
+                android:textSize="20sp"
+                android:gravity="center"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginTop="3dp"
+            android:background="@color/color_surface"
+            android:gravity="center"
+            android:id="@+id/sliderContainer"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/color_surface"
+                android:gravity="center"
+                android:id="@+id/led3Container"
+                >
+
+                <CheckBox
+                    android:id="@+id/checkboxLED3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginLeft="17dp"
+                    android:background="@color/color_surface"
+                    android:buttonTint="@color/rally_green_300"
+                    android:checked="true"
+                    android:fontFamily="@font/roboto_condensed_regular"
+                    android:scaleX="1.7"
+                    android:scaleY="1.7"
+                    android:textColor="@color/color_primary"
+                    android:clickable="false"/>
+
+                <TextView
+                    android:id="@+id/ledText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/checkboxLED3"
+                    android:layout_marginLeft="18dp"
+                    android:fontFamily="@font/roboto_condensed_regular"
+                    android:textSize="12sp"
+                    android:text="Kitchen Lights"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/checkboxLED3"
+                    android:layout_below="@id/ledText3"
+                    android:layout_marginLeft="18dp"
+                    android:fontFamily="@font/roboto_condensed_light"
+                    android:textSize="10sp"
+                    android:textColor="@color/color_primary_variant"
+                    android:text="• • • Kitchen"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:text="11,986 W"
+                    android:fontFamily="@font/eczar"
+                    android:textSize="20sp"
+                    android:gravity="center"/>
+
+            </RelativeLayout>
+            <SeekBar
+                android:id="@+id/lightSlider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_surface"
+                android:thumbTint="@color/rally_green_300"
+                android:progressTint="@color/rally_green_700"
+                android:layout_below="@id/led3Container"/>
+        </RelativeLayout>
+        <ListView
+            android:id="@+id/devicesListView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/PairedBtn"
+            android:layout_alignEnd="@+id/off"
+            android:layout_alignRight="@+id/off"
+            android:choiceMode="singleChoice" />
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

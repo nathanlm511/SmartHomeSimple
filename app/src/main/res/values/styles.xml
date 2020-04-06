@@ -1,0 +1,50 @@
+<resources>
+
+    <declare-styleable name="RallyLineGraphChart">
+        <attr name="barColor" format="color"/>
+        <attr name="curveBorderColor" format="color"/>
+        <attr name="curveFillColor" format="color"/>
+        <attr name="curveTopMargin" format="dimension"/>
+    </declare-styleable>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_variant</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorSecondary">@color/color_secondary</item>
+        <item name="colorSecondaryVariant">@color/color_secondary_variant</item>
+
+        <item name="android:colorBackground">@color/color_background</item>
+        <item name="colorSurface">@color/color_surface</item>
+        <item name="colorError">@color/color_error</item>
+
+
+        <item name="android:textColorPrimary">#ffffff</item>
+        <item name="android:editTextColor">#ffffff</item>
+
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorLink">@color/color_primary_variant</item>
+        <item name="android:textColorLinkInverse">@color/color_secondary_variant</item>
+
+        <!--Material type attributes-->
+        <item name="textAppearanceHeadline1">@style/TextAppearance.Rally.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.Rally.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.Rally.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.Rally.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.Rally.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.Rally.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.Rally.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.Rally.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.Rally.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.Rally.Body2</item>
+        <item name="textAppearanceButton">@style/TextAppearance.Rally.Button</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.Rally.Caption</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.Rally.Overline</item>
+        <item name="textAppearanceMoney1">@style/TextAppearance.Rally.Money1</item>
+        <item name="textAppearanceCardNumber1">@style/TextAppearance.Rally.CardNumber1</item>
+    </style>
+
+
+</resources>
