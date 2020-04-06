@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -63,12 +64,16 @@
 
     </LinearLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar">
+
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
         android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="18dp"
         android:layout_marginTop="2dp"
@@ -218,6 +223,7 @@
                 android:text="Total power"
                 android:fontFamily="@font/roboto_condensed_light"/>
             <TextView
+                android:id="@+id/totalPower"
                 android:layout_marginTop="-5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -280,9 +286,7 @@
                 android:checked="false"
                 android:fontFamily="@font/roboto_condensed_regular"
                 android:scaleX="1.7"
-                android:scaleY="1.7"
-                android:textColor="@color/color_primary"/>
-
+                android:scaleY="1.7"></CheckBox>
             <TextView
                 android:id="@+id/ledText1"
                 android:layout_width="wrap_content"
@@ -302,9 +306,10 @@
                 android:fontFamily="@font/roboto_condensed_light"
                 android:textSize="10sp"
                 android:textColor="@color/color_primary_variant"
-                android:text="• • • Bathroom"/>
+                android:text="• • • Kitchen"/>
 
             <TextView
+                android:id="@+id/applianceA"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
@@ -313,7 +318,8 @@
                 android:text="42,450 W"
                 android:fontFamily="@font/eczar"
                 android:textSize="20sp"
-                android:gravity="center"/>
+                android:gravity="center"
+                tools:ignore="InvalidId" />
 
         </RelativeLayout>
 
@@ -352,7 +358,7 @@
                 android:layout_marginLeft="18dp"
                 android:fontFamily="@font/roboto_condensed_regular"
                 android:textSize="12sp"
-                android:text="Fire Hydrant"
+                android:text="TV"
                 android:layout_marginTop="10dp"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -363,9 +369,10 @@
                 android:fontFamily="@font/roboto_condensed_light"
                 android:textSize="10sp"
                 android:textColor="@color/color_primary_variant"
-                android:text="• • • Bedroom"/>
+                android:text="• • • Guest Room"/>
 
             <TextView
+                android:id="@+id/applianceB"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
@@ -422,7 +429,7 @@
                     android:layout_marginLeft="18dp"
                     android:fontFamily="@font/roboto_condensed_regular"
                     android:textSize="12sp"
-                    android:text="Kitchen Lights"
+                    android:text="Bathroom Lights"
                     android:layout_marginTop="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -433,9 +440,10 @@
                     android:fontFamily="@font/roboto_condensed_light"
                     android:textSize="10sp"
                     android:textColor="@color/color_primary_variant"
-                    android:text="• • • Kitchen"/>
+                    android:text="• • • Bathroom"/>
 
                 <TextView
+                    android:id="@+id/variableLED"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
@@ -456,6 +464,292 @@
                 android:progressTint="@color/rally_green_700"
                 android:layout_below="@id/led3Container"/>
         </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:orientation="horizontal"
+            >
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/rally_yellow"
+                ></View>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/rally_orange"
+                ></View>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="3dp"
+            android:background="@color/color_surface"
+            android:gravity="center"
+            android:id="@+id/tempContainer"
+            >
+
+            <CheckBox
+                android:id="@+id/checkboxTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="17dp"
+                android:layout_marginLeft="17dp"
+                android:background="@color/color_surface"
+                android:buttonTint="@color/rally_yellow"
+                android:checked="false"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:scaleX="1.7"
+                android:scaleY="1.7"
+                android:textColor="@color/color_primary"/>
+
+            <TextView
+                android:id="@+id/tempText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/checkboxTemp"
+                android:layout_marginLeft="18dp"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:textSize="12sp"
+                android:text="Temperature Sensor"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/checkboxTemp"
+                android:layout_below="@id/tempText"
+                android:layout_marginLeft="18dp"
+                android:fontFamily="@font/roboto_condensed_light"
+                android:textSize="10sp"
+                android:textColor="@color/color_primary_variant"
+                android:text="• • • Living Room"/>
+
+            <TextView
+                android:id="@+id/temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:text="42,450 W"
+                android:fontFamily="@font/eczar"
+                android:textSize="20sp"
+                android:gravity="center"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="3dp"
+            android:background="@color/color_surface"
+            android:gravity="center"
+            android:id="@+id/humidityContainer"
+            >
+
+            <CheckBox
+                android:id="@+id/checkboxHumidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="17dp"
+                android:layout_marginLeft="17dp"
+                android:background="@color/color_surface"
+                android:buttonTint="@color/rally_orange"
+                android:checked="false"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:scaleX="1.7"
+                android:scaleY="1.7"
+                android:textColor="@color/color_primary"/>
+
+            <TextView
+                android:id="@+id/humidityText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/checkboxHumidity"
+                android:layout_marginLeft="18dp"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:textSize="12sp"
+                android:text="Humidity Sensor"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/checkboxHumidity"
+                android:layout_below="@id/humidityText"
+                android:layout_marginLeft="18dp"
+                android:fontFamily="@font/roboto_condensed_light"
+                android:textSize="10sp"
+                android:textColor="@color/color_primary_variant"
+                android:text="• • • Living Room"/>
+
+            <TextView
+                android:id="@+id/humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:text="42,450 W"
+                android:fontFamily="@font/eczar"
+                android:textSize="20sp"
+                android:gravity="center"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:orientation="horizontal"
+            >
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/rally_blue"
+                ></View>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/rally_purple"
+                ></View>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="3dp"
+            android:background="@color/color_surface"
+            android:gravity="center"
+            android:id="@+id/lockContainer"
+            >
+
+            <CheckBox
+                android:id="@+id/checkboxLock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="17dp"
+                android:layout_marginLeft="17dp"
+                android:background="@color/color_surface"
+                android:buttonTint="@color/rally_blue"
+                android:checked="false"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:scaleX="1.7"
+                android:scaleY="1.7"
+                android:textColor="@color/color_primary"/>
+
+            <TextView
+                android:id="@+id/lockText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/checkboxLock"
+                android:layout_marginLeft="18dp"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:textSize="12sp"
+                android:text="Lock"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/checkboxLock"
+                android:layout_below="@id/lockText"
+                android:layout_marginLeft="18dp"
+                android:fontFamily="@font/roboto_condensed_light"
+                android:textSize="10sp"
+                android:textColor="@color/color_primary_variant"
+                android:text="• • • Front Door"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:text="0 W"
+                android:fontFamily="@font/eczar"
+                android:textSize="20sp"
+                android:gravity="center"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="3dp"
+            android:background="@color/color_surface"
+            android:gravity="center"
+            android:id="@+id/nightContainer"
+            >
+
+            <CheckBox
+                android:id="@+id/checkboxNight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="17dp"
+                android:layout_marginLeft="17dp"
+                android:background="@color/color_surface"
+                android:buttonTint="@color/rally_purple"
+                android:checked="false"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:scaleX="1.7"
+                android:scaleY="1.7"
+                android:textColor="@color/color_primary"/>
+
+            <TextView
+                android:id="@+id/nightText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/checkboxNight"
+                android:layout_marginLeft="18dp"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:textSize="12sp"
+                android:text="Night Light"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/checkboxNight"
+                android:layout_below="@id/nightText"
+                android:layout_marginLeft="18dp"
+                android:fontFamily="@font/roboto_condensed_light"
+                android:textSize="10sp"
+                android:textColor="@color/color_primary_variant"
+                android:text="• • • Bedroom"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:text="0 W"
+                android:fontFamily="@font/eczar"
+                android:textSize="20sp"
+                android:gravity="center"/>
+
+        </RelativeLayout>
+
+
         <ListView
             android:id="@+id/devicesListView"
             android:layout_width="wrap_content"
@@ -466,7 +760,8 @@
             android:choiceMode="singleChoice" />
 
 
-
     </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+import java.util.LinkedList;
 import java.util.Set;
 import java.util.UUID;
 
@@ -34,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
     // GUI Components
     private TextView mBluetoothStatus;
     private TextView mReadBuffer;
+    private TextView mTotalPower;
+    private TextView mApplianceA;
+    private TextView mApplianceB;
+    private TextView mVariableLED;
+    private TextView mTemperature;
+    private TextView mHumidity;
     private ImageButton mScanBtn;
     private ImageButton mOffBtn;
     private ImageButton mListPairedDevicesBtn;
@@ -44,6 +52,19 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<String> mBTArrayAdapter;
     private ListView mDevicesListView;
     private CheckBox mLED1;
+    private CheckBox mLED2;
+    private CheckBox mVAR;
+    private CheckBox mLOCK;
+    private CheckBox mNIGHT;
+
+    private boolean led1On;
+    private boolean led2On;
+    private boolean ledVarOn;
+    private boolean lockOn;
+    private boolean nightOn;
+
+    private String TX;
+
 
     private Handler mHandler; // Our main handler that will receive callback notifications
     private ConnectedThread mConnectedThread; // bluetooth background worker thread to send and receive data
@@ -70,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
         mDiscoverBtn = (Button)findViewById(R.id.discover);
         mListPairedDevicesBtn = (ImageButton)findViewById(R.id.devices);
         mLED1 = (CheckBox)findViewById(R.id.checkboxLED1);
+        mLED2 = (CheckBox)findViewById(R.id.checkboxLED2);
+        mVAR = (CheckBox)findViewById(R.id.checkboxLED3);
+        mLOCK = (CheckBox)findViewById(R.id.checkboxLock);
+        mNIGHT = (CheckBox)findViewById(R.id.checkboxNight);
         mLightSlider = (SeekBar)findViewById(R.id.lightSlider);
 
         mBTArrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
@@ -79,6 +104,20 @@ public class MainActivity extends AppCompatActivity {
         mDevicesListView.setAdapter(mBTArrayAdapter); // assign model to view
         mDevicesListView.setOnItemClickListener(mDeviceClickListener);
 
+        mTotalPower = (TextView) findViewById(R.id.totalPower);
+        mApplianceA = (TextView) findViewById(R.id.applianceA);
+        mApplianceB = (TextView) findViewById(R.id.applianceB);
+        mVariableLED = (TextView) findViewById(R.id.variableLED);
+        mTemperature = (TextView) findViewById(R.id.temperature);
+        mHumidity = (TextView) findViewById(R.id.humidity);
+
+        led1On = false;
+        led2On = false;
+        ledVarOn = false;
+        lockOn = false;
+        nightOn = false;
+
+        TX = "0000000";
 
         mLightSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -96,7 +135,8 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
                 // TODO Auto-generated method stub
                 if(mConnectedThread != null) {//First check to make sure thread created
-                    mConnectedThread.write(String.valueOf(progress));
+                    TX = TX.substring(0, 4) + String.format("%03d", progress);
+                    mConnectedThread.write(TX);
                 }
             }
         });
@@ -106,13 +146,35 @@ public class MainActivity extends AppCompatActivity {
         mHandler = new Handler(){
             public void handleMessage(android.os.Message msg){
                 if(msg.what == MESSAGE_READ){
-                    String readMessage = null;
+                    Byte a = null;
+                    Byte b = null;
+                    Byte var = null;
+                    Byte temp = null;
+                    Byte hum = null;
                     try {
-                        readMessage = new String((byte[]) msg.obj, "UTF-8");
-                    } catch (UnsupportedEncodingException e) {
+                        ByteBuffer wrapped = ByteBuffer.wrap((byte[]) msg.obj); // big-endian by default
+                        a = wrapped.get(0);
+                        b = wrapped.get(1);
+                        var = wrapped.get(2);
+                        temp = wrapped.get(3);
+                        hum = wrapped.get(4);
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    mReadBuffer.setText(readMessage);
+                    int intA = (a & 0xFF);
+                    mApplianceA.setText(Integer.toString(intA) + " W");
+                    int intB = (b & 0xFF);
+                    mApplianceB.setText(Integer.toString(intB) + " W");
+                    int intVar = (var & 0xFF);
+                    mVariableLED.setText(Integer.toString(intVar) + " W");
+                    int intTemp = (temp & 0xFF);
+                    mTemperature.setText(Integer.toString(intTemp) + " W");
+                    int intHum = (hum & 0xFF);
+                    mHumidity.setText(Integer.toString(intHum) + " W");
+
+                    mTotalPower.setText(Integer.toString(intA + intB + intVar) + " W");
+
+
                 }
 
                 if(msg.what == CONNECTING_STATUS){
@@ -134,8 +196,65 @@ public class MainActivity extends AppCompatActivity {
             mLED1.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
-                    if(mConnectedThread != null) //First check to make sure thread created
-                        mConnectedThread.write("00001000");
+                    if(mConnectedThread != null) {//First check to make sure thread created
+                        if (led1On) {
+                            TX = "0" + TX.substring(1);
+                            mConnectedThread.write(TX);
+                        } else {
+                            TX = "1" + TX.substring(1);
+                            mConnectedThread.write(TX);
+                        }
+                        led1On = !led1On;
+                    }
+
+                }
+            });
+
+            mLED2.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    if(mConnectedThread != null) {//First check to make sure thread created
+                        if (led2On) {
+                            TX = TX.substring(0, 1) + "0" + TX.substring(2);
+                            mConnectedThread.write(TX);
+                        } else {
+                            TX = TX.substring(0, 1) + "1" + TX.substring(2);
+                            mConnectedThread.write(TX);
+                        }
+                        led2On = !led2On;
+                    }
+                }
+            });
+
+            mLOCK.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    if(mConnectedThread != null) {//First check to make sure thread created
+                        if (lockOn) {
+                            TX = TX.substring(0, 2) + "0" + TX.substring(3);
+                            mConnectedThread.write(TX);
+                        } else {
+                            TX = TX.substring(0, 2) + "1" + TX.substring(3);
+                            mConnectedThread.write(TX);
+                        }
+                        lockOn = !lockOn;
+                    }
+                }
+            });
+
+            mNIGHT.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    if(mConnectedThread != null) {//First check to make sure thread created
+                        if (nightOn) {
+                            TX = TX.substring(0, 3) + "0" + TX.substring(4);
+                            mConnectedThread.write(TX);
+                        } else {
+                            TX = TX.substring(0, 3) + "1" + TX.substring(4);
+                            mConnectedThread.write(TX);
+                        }
+                        nightOn = !nightOn;
+                    }
                 }
             });
 
