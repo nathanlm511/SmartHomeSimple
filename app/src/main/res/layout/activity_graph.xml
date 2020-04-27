@@ -65,17 +65,12 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <com.androidplot.xy.XYPlot
-            style="@style/APDefacto.Dark"
-            android:id="@+id/plot"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            ap:title="A Simple XY Plot"
-            ap:rangeTitle="range"
-            ap:domainTitle="domain"
-            ap:lineLabels="left|bottom"
-            ap:lineLabelRotationBottom="-45"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar">
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </RelativeLayout>
 
 

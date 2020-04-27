@@ -145,7 +145,7 @@
                 android:layout_weight="0.1"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="RX:"
+                android:text="Face Detected:"
                 android:fontFamily="@font/roboto_condensed_regular"
                 android:layout_marginLeft="20dp"/>
 
@@ -157,7 +157,7 @@
                 android:layout_weight="0.9"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="Read Buffer"
+                android:text="0 people | 0 unknown"
                 android:fontFamily="@font/roboto_condensed_light"/>
         </LinearLayout>
 
@@ -229,7 +229,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/total"
                 android:layout_marginLeft="25dp"
-                android:text="988,123 W"
+                android:text="0 mW"
                 android:textSize="30sp"
                 android:fontFamily="@font/eczar"/>
 
@@ -315,7 +315,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
-                android:text="42,450 W"
+                android:text="0 mW"
                 android:fontFamily="@font/eczar"
                 android:textSize="20sp"
                 android:gravity="center"
@@ -378,7 +378,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
-                android:text="34,769 W"
+                android:text="0 mW"
                 android:fontFamily="@font/eczar"
                 android:textSize="20sp"
                 android:gravity="center"/>
@@ -449,7 +449,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
-                    android:text="11,986 W"
+                    android:text="0 mW"
                     android:fontFamily="@font/eczar"
                     android:textSize="20sp"
                     android:gravity="center"/>
@@ -539,7 +539,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
-                android:text="42,450 W"
+                android:text="0 °C"
                 android:fontFamily="@font/eczar"
                 android:textSize="20sp"
                 android:gravity="center"/>
@@ -601,7 +601,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
-                android:text="42,450 W"
+                android:text="0 g/m^3"
                 android:fontFamily="@font/eczar"
                 android:textSize="20sp"
                 android:gravity="center"/>
@@ -681,7 +681,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
-                android:text="0 W"
+                android:text="0 mW"
                 android:fontFamily="@font/eczar"
                 android:textSize="20sp"
                 android:gravity="center"/>
@@ -742,7 +742,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
-                android:text="0 W"
+                android:text="0 mW"
                 android:fontFamily="@font/eczar"
                 android:textSize="20sp"
                 android:gravity="center"/>

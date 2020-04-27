@@ -27,6 +27,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Set;
 import java.util.UUID;
@@ -78,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
     private final static int MESSAGE_READ = 2; // used in bluetooth handler to identify message update
     private final static int CONNECTING_STATUS = 3; // used in bluetooth handler to identify message status
 
+    private ArrayList<Integer> data = new ArrayList<Integer>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
         mVariableLED = (TextView) findViewById(R.id.variableLED);
         mTemperature = (TextView) findViewById(R.id.temperature);
         mHumidity = (TextView) findViewById(R.id.humidity);
+
+
 
         led1On = false;
         led2On = false;
@@ -151,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
                     Byte var = null;
                     Byte temp = null;
                     Byte hum = null;
+                    Byte cam = null;
                     try {
                         ByteBuffer wrapped = ByteBuffer.wrap((byte[]) msg.obj); // big-endian by default
                         a = wrapped.get(0);
@@ -158,21 +164,29 @@ public class MainActivity extends AppCompatActivity {
                         var = wrapped.get(2);
                         temp = wrapped.get(3);
                         hum = wrapped.get(4);
+                        hum = wrapped.get(5);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                     int intA = (a & 0xFF);
-                    mApplianceA.setText(Integer.toString(intA) + " W");
+                    mApplianceA.setText(Integer.toString(intA) + " mW");
                     int intB = (b & 0xFF);
-                    mApplianceB.setText(Integer.toString(intB) + " W");
+                    mApplianceB.setText(Integer.toString(intB) + " mW");
                     int intVar = (var & 0xFF);
-                    mVariableLED.setText(Integer.toString(intVar) + " W");
+                    mVariableLED.setText(Integer.toString(intVar) + " mW");
                     int intTemp = (temp & 0xFF);
-                    mTemperature.setText(Integer.toString(intTemp) + " W");
+                    mTemperature.setText(Integer.toString(intTemp) + " °C");
                     int intHum = (hum & 0xFF);
-                    mHumidity.setText(Integer.toString(intHum) + " W");
+                    mHumidity.setText(Integer.toString(intHum) + " g/m^3");
 
-                    mTotalPower.setText(Integer.toString(intA + intB + intVar) + " W");
+                    mTotalPower.setText(Integer.toString(intA + intB + intVar) + " mW");
+
+                    data.add(intA + intB + intVar);
+
+                    int intCam = (cam & 0xFF);
+                    int people = intCam / 16;
+                    int unknown = intCam % 16;
+                    mReadBuffer.setText(Integer.toString(people) + " people | " + Integer.toString(unknown) + " unknown");
 
 
                 }
@@ -290,6 +304,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void toGraphs(View view) {
         Intent intent = new Intent(this, GraphActivity.class);
+        intent.putExtra("DATA", data);
         startActivity(intent);
     }
 

@@ -29,6 +29,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 // Declare MPChart libraries as module dependencies
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     compile "com.androidplot:androidplot-core:1.5.7"
     implementation 'com.google.android.material:material:1.1.0'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
